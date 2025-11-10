@@ -1,4 +1,26 @@
 #include "file.h"
+/* ---------- LIHAT PEMINJAMAN ----------
+   Menampilkan alat yang sedang dipinjam oleh user tertentu.
+*/
+void lihatPinjaman(char *username) {
+    FILE *fp = fopen("data_peminjaman.txt", "r");
+    if (!fp) { printf("Belum ada data peminjaman.\n"); return; }
+
+    char user[50], nama[50];
+    unsigned int id;
+    int found = 0;
+    printf("\n=== Peminjaman oleh %s ===\n", username);
+    while (fscanf(fp, "%49s %u %49s", user, &id, nama) != EOF) {
+        if (strcmp(user, username) == 0) {
+            printf("ID: %-3u Nama: %s\n", id, nama);
+            found = 1;
+        }
+    }
+    if (!found) printf("Anda belum meminjam alat apapun.\n");
+    fclose(fp);
+}
+
+
 void kembalikanAlat(char *username) {
     unsigned int id;
     printf("Masukkan ID alat yang ingin dikembalikan: ");
@@ -37,5 +59,5 @@ Alat a;
     remove("data_alat.txt");
     rename("temp_alat.txt", "data_alat.txt");
 
-    printf("✅ Alat ID %u berhasil dikembalikan.\n",id);
+    printf(" Alat ID %u berhasil dikembalikan.\n",id);
 }
