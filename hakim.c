@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     }
 
     printf("Selamat datang %s (role: %s)\n", argv[1], role);
-
+    
     int pilihan = 0;
     do {
         if (strcmp(role, "admin") == 0) {

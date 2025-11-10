@@ -65,6 +65,6 @@ void editAlat() {
     fclose(fp); fclose(tmp);
     remove("data_Alat.txt");
     rename("temp_Alat.txt", "data_Alat.txt");
-    if (found) printf("✅ Data alat ID %u diperbarui.\n", id);
+    if (found) printf("Data alat ID %u diperbarui.\n", id);
     else printf("⚠ Alat ID %u tidak ditemukan.\n", id);
 }

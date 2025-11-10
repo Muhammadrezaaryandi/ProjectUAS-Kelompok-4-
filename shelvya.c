@@ -23,7 +23,7 @@ void hapusAlat() {
     fclose(fp); fclose(tmp);
     remove("data_alat.txt");
     rename("temp_alat.txt", "data_alat.txt");
-    if (found) printf("✅ Alat ID %u dihapus.\n", id);
+    if (found) printf("Alat ID %u dihapus.\n", id);
     else printf("⚠ Alat ID %u tidak ditemukan.\n", id);
 }
 
@@ -47,7 +47,7 @@ void pinjamAlat(char *username) {
             if (a.jumlah > 0) {
                 a.jumlah--;
                 fprintf(pinjam, "%s %u %s\n", username, a.id, a.nama);
-                printf("✅ Anda meminjam: %s (ID %u)\n", a.nama, a.id);
+                printf("Anda meminjam: %s (ID %u)\n", a.nama, a.id);
                 found = 1;
             } else {
                 printf("⚠ Stok alat habis.\n");

@@ -26,27 +26,3 @@ int login(char *username, char *password, char *role) {
     return 0;
 }
 
-/* ---------- TAMPILKAN DAFTAR ALAT ----------
-   Menampilkan semua data alat yang ada di file data_alat.txt.
-*/
-void tampilkanAlat() {
-    FILE *fp = fopen("data_alat.txt", "r");
-    if (!fp) {
-        printf("File data_alat.txt tidak ditemukan.\n");
-        return;
-    }
-
-    Alat a;
-
-    printf("\n=== DAFTAR ALAT LAB KOMPUTER ===\n");
-    printf("ID  Nama         Merek      Model       Tahun  Jumlah\n");
-    printf("-----------------------------------------------------\n");
-
-    while (fscanf(fp, "%u %49s %49s %49s %u %u",
-                  &a.id, a.nama, a.merek, a.model, &a.tahun, &a.jumlah) != EOF) {
-        printf("%-3u %-12s %-10s %-10s %-6u %-6u\n",
-               a.id, a.nama, a.merek, a.model, a.tahun, a.jumlah);
-    }
-
-    fclose(fp);
-}

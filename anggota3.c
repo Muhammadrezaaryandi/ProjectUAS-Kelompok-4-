@@ -1,3 +1,4 @@
+#include "file.h"
 // ====================================================
 // ANGGOTA 3 - Fungsi TAMBAH dan EDIT ALAT
 // ====================================================
@@ -28,7 +29,7 @@ void tambahAlat() {
 
     fprintf(fp, "%u %s %s %s %u %u\n", a.id, a.nama, a.merek, a.model, a.tahun, a.jumlah);
     fclose(fp);
-    printf("✅ Alat berhasil ditambahkan.\n");
+    printf("Alat berhasil ditambahkan.\n");
 }
 
 /* ---------- EDIT ALAT ----------
@@ -64,6 +65,6 @@ void editAlat() {
     fclose(fp); fclose(tmp);
     remove("data_alat.txt");
     rename("temp_alat.txt", "data_alat.txt");
-    if (found) printf("✅ Data alat ID %u diperbarui.\n", id);
+    if (found) printf(" Data alat ID %u diperbarui.\n", id);
     else printf("⚠ Alat ID %u tidak ditemukan.\n", id);
 }

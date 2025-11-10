@@ -44,7 +44,7 @@ void kembalikanAlat(char *username) {
     remove("data_peminjaman.txt");
     rename("temp_pinjam.txt", "data_peminjaman.txt");
 
-    if (!returned) { printf("⚠ Tidak ditemukan peminjaman dengan ID %u oleh Anda.\n", id); return; }
+    if (!returned) { printf(" Tidak ditemukan peminjaman dengan ID %u oleh Anda.\n", id); return; }
 
     // Tambahkan stok alat kembali
     FILE *fa = fopen("data_alat.txt", "r");
