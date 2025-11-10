@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-#ifndef ALAT_H
-#define ALAT_H
-=======
 #ifndef file.h
 #define file.h
->>>>>>> 9657b84803a5ac097c296191aed766d28802c1ba
 
 #include <stdio.h>
 #include <stdlib.h>
