@@ -1,4 +1,9 @@
+#include <stdio.h>
 #include "alat.h"
+
+void garis() {
+    printf("=============================================\n");
+}
 
 int main(int argc, char *argv[]) {
     if (argc < 3) {
