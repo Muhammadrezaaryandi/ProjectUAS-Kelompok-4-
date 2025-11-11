@@ -24,8 +24,13 @@ void tampilkan_alat() {
 
     Alat alat;
     printf("\n=== DAFTAR ALAT LAB ===\n");
+<<<<<<< HEAD
     printf("ID\tNama\t\tMerek\t\tModel\tTahun\tJumlah\n");
     printf("============================================================\n");
+=======
+    printf("ID\tNama\t\tMerek\t\tModel\t\tTahun\tJumlah\n");
+    printf("------------------------------------------------------------\n");
+>>>>>>> 760260afeb00a642d94b2e9cd27bf25018ea9671
 
     while (fscanf(fp, "%u %s %s %s %u %u", 
         &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) {
