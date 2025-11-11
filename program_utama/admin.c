@@ -1,5 +1,19 @@
 #include "alat.h"
 
+void garis() {
+    printf("============================================================\n");
+}
+
+int hitung_baris_file(char *namaFile) {
+    FILE *fp = fopen(namaFile, "r");
+    if (!fp) return 0;
+    int count = 0;
+    char buffer[255];
+    while (fgets(buffer, sizeof(buffer), fp)) count++;
+    fclose(fp);
+    return count;
+}
+
 // Menampilkan semua alat
 void tampilkan_alat() {
     FILE *fp = fopen("alat.txt", "r");
@@ -11,7 +25,7 @@ void tampilkan_alat() {
     Alat alat;
     printf("\n=== DAFTAR ALAT LAB ===\n");
     printf("ID\tNama\t\tMerek\t\tModel\tTahun\tJumlah\n");
-    printf("------------------------------------------------------------\n");
+    printf("============================================================\n");
 
     while (fscanf(fp, "%u %s %s %s %u %u", 
         &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) {
