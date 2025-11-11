@@ -8,18 +8,31 @@
 void hapusAlat() {
     unsigned int id;
     printf("Masukkan ID alat yang akan dihapus: ");
-    if (scanf("%u", &id) != 1) { printf("Input salah.\n"); return; }
+    if (scanf("%u", &id) != 1){ 
+        printf("Input salah.\n"); 
+        return;
+    }
 
     FILE *fp = fopen("data_alat.txt", "r");
     FILE *tmp = fopen("temp_alat.txt", "w");
-    if (!fp || !tmp) { printf("Error file.\n"); if (fp) fclose(fp); if (tmp) fclose(tmp); return; }
+    if (!fp || !tmp) {
+        printf("Error file.\n"); 
+        if (fp) fclose(fp); 
+        if (tmp) fclose(tmp); 
+        return; 
+    }
 
     Alat a;
     int found = 0;
+
     while (fscanf(fp, "%u %49s %49s %49s %u %u", &a.id, a.nama, a.merek, a.model, &a.tahun, &a.jumlah) != EOF) {
-        if (a.id == id) { found = 1; continue; } // skip baris yang dihapus
+        if (a.id == id) { 
+            found = 1; 
+            continue;   // skip baris yang dihapus
+        } 
         fprintf(tmp, "%u %s %s %s %u %u\n", a.id, a.nama, a.merek, a.model, a.tahun, a.jumlah);
     }
+
     fclose(fp); fclose(tmp);
     remove("data_alat.txt");
     rename("temp_alat.txt", "data_alat.txt");
@@ -60,5 +73,7 @@ void pinjamAlat(char *username) {
     remove("data_alat.txt");
     rename("temp_alat.txt", "data_alat.txt");
 
-    if (!found) printf("⚠ Alat ID %u tidak ditemukan atau stok habis.\n", id);
+    if (!found) {
+        printf("⚠ Alat ID %u tidak ditemukan atau stok habis.\n", id);
+    }
 }
