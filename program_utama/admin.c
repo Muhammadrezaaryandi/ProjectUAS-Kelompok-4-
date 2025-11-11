@@ -10,7 +10,7 @@ void tampilkan_alat() {
 
     Alat alat;
     printf("\n=== DAFTAR ALAT LAB ===\n");
-    printf("ID\tNama\t\tMerek\t\tModel\tTahun\tJumlah\n");
+    printf("ID\tNama\t\tMerek\t\tModel\t\tTahun\tJumlah\n");
     printf("------------------------------------------------------------\n");
 
     while (fscanf(fp, "%u %s %s %s %u %u", 
