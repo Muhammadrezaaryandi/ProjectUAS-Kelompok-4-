@@ -1,7 +1,7 @@
 #include "alat.h"
 
 int login(const char *username, const char *password, char *role) {
-    FILE *fp = fopen("akun.txt", "r");
+    FILE *fp = fopen("data_akun.txt", "r");
     if (!fp) {
         printf("File akun.txt tidak ditemukan!\n");
         return 0;

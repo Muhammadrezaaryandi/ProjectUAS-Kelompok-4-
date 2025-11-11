@@ -1,4 +1,5 @@
 #include "alat.h"
+
 void lihat_alat() {
     tampilkan_alat();
 }
