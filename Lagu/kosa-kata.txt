@@ -1,4 +1,4 @@
-[Judul:<BACK TO FRIENDS>]
+[Judul:<Back To Friends>]
 
 touch=
 my=
