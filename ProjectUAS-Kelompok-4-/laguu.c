@@ -7,14 +7,14 @@
 #define MAX_LINE 1000
 #define MAX_WORDS 5000
 
-// Ubah semua huruf ke huruf kecil
+// Mengubah seluruh huruf menjadi huruf kecil
 void toLowerCase(char *str) {
     for (int i = 0; str[i]; i++) {
         str[i] = tolower(str[i]);
     }
 }
 
-// Hapus semua karakter kecuali huruf, spasi, dan apostrophe (')
+// Hapus semua karakter kecuali huruf, spasi, dan karakter (')
 void cleanText(char *str) {
     int j = 0;
     for (int i = 0; str[i] != '\0'; i++) {
@@ -25,7 +25,7 @@ void cleanText(char *str) {
     str[j] = '\0';
 }
 
-// Cek apakah kata sudah ada di daftar
+// Mengecek apakah kata sudah pernah ada sebelumnya
 int isDuplicate(char words[][MAX_WORD], int count, char *word) {
     for (int i = 0; i < count; i++) {
         if (strcmp(words[i], word) == 0)
@@ -35,18 +35,21 @@ int isDuplicate(char words[][MAX_WORD], int count, char *word) {
 }
 
 int main() {
+    // Deklarasi variabel untuk file input dan output, buffer baris, daftar kata, penghitung kata unik, dan judul lagu
     FILE *fin, *fout;
     char line[MAX_LINE];
     char words[MAX_WORDS][MAX_WORD];
     int count = 0;
     char title[200];
 
+    // Membuka file lirik untuk dibaca
     fin = fopen("lirik.txt", "r");
     if (!fin) {
         printf("File lirik.txt tidak ditemukan!\n");
         return 1;
     }
 
+    // Membuat file output untuk menulis kosa-kata
     fout = fopen("kosa-kata.txt", "w");
     if (!fout) {
         printf("Gagal membuat file kosa-kata.txt!\n");
@@ -54,28 +57,33 @@ int main() {
         return 1;
     }
 
-    // Ambil judul (baris pertama)
+    // Membaca baris pertama sebagai judul lagu
     fgets(title, sizeof(title), fin);
     fprintf(fout, "%s", title);
 
-    // Baca lirik baris demi baris
+    // Membaca lirik baris demi baris
     while (fgets(line, sizeof(line), fin)) {
+
+        // Memanggil fungsi untuk mengubah lirik jadi huruf kecil
         toLowerCase(line);
+
+        // Memanggil fungsi untul membersihkan karakter yang tidak perlu
         cleanText(line);
 
-        // Ambil kata satu-per-satu
+        // Mengambil kata satu-per-satu
         char *token = strtok(line, " ");
         while (token != NULL) {
 
-            // Lewati token kosong atau hanya apostrophe
+            // Lewati token kosong atau hanya karakter (')
             if (strlen(token) > 0 && !(strlen(token) == 1 && token[0] == '\'')) {
 
-                // Masukkan jika belum ada
+                // Jika kata belum pernah muncul, maka disimpan
                 if (!isDuplicate(words, count, token)) {
                     strcpy(words[count], token);
                     count++;
                 }
             }
+            // Ambil kata berikutnya
             token = strtok(NULL, " ");
         }
     }
@@ -85,6 +93,7 @@ int main() {
         fprintf(fout, "%s=\n", words[i]);
     }
 
+    // Tutup file input dan output
     fclose(fin);
     fclose(fout);
 
