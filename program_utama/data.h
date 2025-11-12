@@ -1,5 +1,5 @@
-#ifndef ALAT_H
-#define ALAT_H
+#ifndef DATA_H
+#define DATA_H
 
 #include <stdio.h>
 #include <stdlib.h>

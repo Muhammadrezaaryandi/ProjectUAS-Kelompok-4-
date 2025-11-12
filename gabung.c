@@ -5,7 +5,6 @@
 // ====================================================
 //  SISTEM PEMINJAMAN ALAT LABORATORIUM
 //  Versi Lengkap dan Terstruktur (Admin & User)
-//  Dibuat oleh ChatGPT untuk Reza Arya
 // ====================================================
 
 // ---------------------- STRUKTUR DATA ----------------------

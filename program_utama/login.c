@@ -1,4 +1,4 @@
-#include "alat.h"
+#include "data.h"
 
 int login(const char *username, const char *password, char *role) {
     FILE *fp = fopen("data_akun.txt", "r");

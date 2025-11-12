@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h> // Diperlukan untuk strcmp
-#include "alat.h"
+#include "data.h"
 
 // Fungsi ini boleh tetap ada di main.c
 void garis() {

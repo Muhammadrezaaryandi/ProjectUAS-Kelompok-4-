@@ -1,9 +1,10 @@
-#include "alat.h"
+#include "data.h"
 
+//Fungsi untuk melihat alat
 void lihat_alat() {
     tampilkan_alat();
 }
-
+//Fungsi untuk meminjam alat
 void pinjam_alat(const char *username) {
     FILE *fp = fopen("alat.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
@@ -42,7 +43,7 @@ void pinjam_alat(const char *username) {
     remove("alat.txt");
     rename("temp.txt", "alat.txt");
 }
-
+//Fungsi untuk melihat alat apa yang sedang dipinjam oleh user
 void lihat_pinjaman(const char *username) {
     FILE *fp = fopen("peminjaman.txt", "r");
     if (!fp) {
@@ -59,7 +60,7 @@ void lihat_pinjaman(const char *username) {
 
     fclose(fp);
 }
-
+//Fungsi untuk mengembalikan alat
 void kembalikan_alat(const char *username) {
     FILE *fp = fopen("peminjaman.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
