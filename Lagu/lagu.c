@@ -6,7 +6,7 @@
 #define MAX_WORD 100
 #define MAX_LINE 1000
 
-// Fungsi untuk ubah huruf jadi kecil semua
+// Fungsi untuk ubah huruf yang besar jadi kecil semua
 void toLowerCase(char *str) {
     for (int i = 0; str[i]; i++) {
         str[i] = tolower(str[i]);
