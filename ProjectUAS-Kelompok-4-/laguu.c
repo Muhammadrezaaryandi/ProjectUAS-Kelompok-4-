@@ -67,7 +67,7 @@ int main() {
         // Memanggil fungsi untuk mengubah lirik jadi huruf kecil
         toLowerCase(line);
 
-        // Memanggil fungsi untul membersihkan karakter yang tidak perlu
+        // Memanggil fungsi untuk membersihkan karakter yang tidak perlu
         cleanText(line);
 
         // Mengambil kata satu-per-satu
