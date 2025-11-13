@@ -10,7 +10,7 @@ void pinjam_alat(const char *username) {
     FILE *pinjam = fopen("peminjaman.txt", "a");
 
     if (!fp || !temp || !pinjam) {
-        printf("Gagal membuka file!\n");
+        printf("Tidak dapat membuka file!\n");
         return;
     }
 
@@ -18,7 +18,7 @@ void pinjam_alat(const char *username) {
     Alat alat;
     int found = 0;
 
-    printf("Masukkan ID alat yang ingin dipinjam: ");
+    printf("Masukkan ID alat: ");
     scanf("%u", &id);
     printf("Jumlah yang dipinjam: ");
     scanf("%u", &jumlah);
@@ -72,7 +72,7 @@ void kembalikan_alat(const char *username) {
     }
 
     unsigned int id;
-    printf("Masukkan ID alat yang dikembalikan: ");
+    printf("Masukkan ID alat: ");
     scanf("%u", &id);
 
     Peminjaman p;
@@ -110,13 +110,15 @@ void kembalikan_alat(const char *username) {
     rename("alatTemp.txt", "alat.txt");
 
     if (found)
-        printf("Alat berhasil dikembalikan!\n");
+        printf("Alat telah dikembalikan!\n");
     else
         printf("Tidak ada data peminjaman dengan ID tersebut!\n");
 }
 
 void menu_user(const char *username) {
     int pilih;
+    int status_baca; 
+
     do {
         printf("\n=== MENU USER (%s) ===\n", username);
         printf("1. Lihat alat tersedia\n");
@@ -125,15 +127,26 @@ void menu_user(const char *username) {
         printf("4. Kembalikan alat\n");
         printf("0. Logout\n");
         printf("Pilih: ");
-        scanf("%d", &pilih);
 
-        switch (pilih) {
-            case 1: lihat_alat(); break;
-            case 2: pinjam_alat(username); break;
-            case 3: lihat_pinjaman(username); break;
-            case 4: kembalikan_alat(username); break;
-            case 0: printf("Logout...\n"); break;
-            default: printf("Pilihan tidak valid!\n");
+        // Ganti scanf
+        status_baca = scanf("%d", &pilih);
+
+        if (status_baca == 1) {
+            // Input valid (angka)
+            switch (pilih) {
+                case 1: lihat_alat(); break;
+                case 2: pinjam_alat(username); break;
+                case 3: lihat_pinjaman(username); break;
+                case 4: kembalikan_alat(username); break;
+                case 0: printf("Logout...\n"); break;
+                default: printf("Pilihan tidak valid!\n");
+            }
+        } else {
+            printf("Harap masukkan angka!\n");
+            // Bersihkan buffer
+            while (getchar() != '\n');
+            pilih = -1;
         }
+
     } while (pilih != 0);
 }

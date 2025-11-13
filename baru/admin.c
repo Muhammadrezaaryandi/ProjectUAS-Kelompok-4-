@@ -1,6 +1,9 @@
 #include "alat.h"
 
-int hitung_baris_file(char *namaFile) {
+// Bagian ini digunakan untuk membaca sebuah file teks
+// dan mengembalikan jumlah baris yang ada di dalam file tersebut.
+int hitung_baris_file(char *namaFile) 
+{
     FILE *fp = fopen(namaFile, "r");
     if (!fp) return 0;
     int count = 0;
@@ -10,46 +13,39 @@ int hitung_baris_file(char *namaFile) {
     return count;
 }
 
-// Menampilkan semua alat
-// Di dalam file: admin.c
-
-// Ganti fungsi tampilkan_alat() Anda dengan yang ini:
-void tampilkan_alat() {
+// Bagian ini berfungsi untuk membaca semua data alat dari file "alat.txt"
+void tampilkan_alat()
+{
     FILE *fp = fopen("alat.txt", "r");
-    if (!fp) {
+    if (!fp)
+    {
         printf("Belum ada data alat.\n");
         return;
     }
 
     Alat alat;
     printf("\n=== DAFTAR ALAT LAB ===\n");
-
-    // --- PERUBAHAN DI SINI (HEADER) ---
-    // Kita ganti \t dengan format lebar yang tetap
-    // Contoh: %-5s (5 spasi), %-20s (20 spasi), dst.
     printf("%-5s %-20s %-15s %-15s %-7s %s\n", 
            "ID", "Nama", "Merek", "Model", "Tahun", "Jumlah");
     printf("========================================================================\n");
 
-
     while (fscanf(fp, "%u,%[^,],%[^,],%[^,],%u,%u\n", 
-        &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) {
+        &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6)
+        {
         
-        // --- PERUBAHAN DI SINI (DATA) ---
-        // Lebarnya harus sama dengan header di atas
-        // %-5u (angka), %-20s (string), %-15s (string), dst.
         printf("%-5u %-20s %-15s %-15s %-7u %u\n",
                alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah);
-    }
+        }
 
     fclose(fp);
 }
-
-// Tambah alat baru
-void tambah_alat() {
+// Bagian ini berfungsi untuk menambahkan data alat baru ke dalam file "alat.txt"
+void tambah_alat()
+{
     FILE *fp = fopen("alat.txt", "a");
-    if (!fp) {
-        printf("Gagal membuka file!\n");
+    if (!fp) 
+    {
+        printf("Tidak dapat membuka file!\n");
         return;
     }
 
@@ -66,35 +62,39 @@ void tambah_alat() {
     fprintf(fp, "%u,%s,%s,%s,%u,%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah);
     fclose(fp);
 
-    printf("Alat berhasil ditambahkan!\n");
+    printf("Alat yang baru berhasil ditambahkan!\n");
 }
-
-// Edit alat
-void edit_alat() {
+// Bagian ini berfungsi untuk mengedit data alat yang sudah ada di dalam file "alat.txt"
+void edit_alat() 
+{
     FILE *fp = fopen("alat.txt", "r");
-    if (!fp) {
+    if (!fp) 
+    {
         printf("Belum ada data alat!\n");
         return;
     }
 
     FILE *temp = fopen("temp.txt", "w");
-    if (!temp) {
-        printf("Gagal membuka file sementara!\n");
+    if (!temp) 
+    {
+        printf("Tidak dapat membuka file sementara!\n");
         fclose(fp);
         return;
     }
 
     unsigned int target;
-    printf("Masukkan ID alat yang ingin diedit: ");
+    printf("Masukkan ID alat: ");
     scanf("%u", &target);
 
     Alat alat;
     int found = 0;
     
    while (fscanf(fp, "%u,%[^,],%[^,],%[^,],%u,%u\n", 
-    &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) { 
-        if (alat.id == target) {
-            printf("Masukkan data baru untuk alat %u:\n", target);
+    &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) 
+    { 
+        if (alat.id == target) 
+        {
+            printf("Masukkan data untuk alat baru %u:\n", target);
             getchar();
             printf("Nama: "); scanf(" %[^\n]", alat.nama);
             printf("Merek: "); scanf(" %[^\n]", alat.merek);
@@ -115,19 +115,19 @@ void edit_alat() {
     if (found) printf("Data alat berhasil diperbarui!\n");
     else printf("ID alat tidak ditemukan!\n");
 }
-
-// Hapus alat
+// Bagian ini berfungsi untuk menghapus data alat dari file "alat.txt" berdasarkan ID alat
 void hapus_alat() {
     FILE *fp = fopen("alat.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
 
-    if (!fp || !temp) {
-        printf("Gagal membuka file!\n");
+    if (!fp || !temp) 
+    {
+        printf("Tidak dapat membuka file!\n");
         return;
     }
 
     unsigned int target;
-    printf("Masukkan ID alat yang ingin dihapus: ");
+    printf("Masukkan ID alat: ");
     scanf("%u", &target);
 
     Alat alat;
@@ -151,9 +151,12 @@ void hapus_alat() {
     else printf("ID tidak ditemukan!\n");
 }
 
-// Menu admin
-void menu_admin() {
-    int pilih;
+// Bagian ini menampilkan daftar menu untuk admin
+void menu_admin() 
+{
+    int pilih = -1;
+    int status_baca; 
+
     do {
         printf("\n=== MENU ADMIN ===\n");
         printf("1. Tampilkan alat\n");
@@ -162,15 +165,22 @@ void menu_admin() {
         printf("4. Hapus alat\n");
         printf("0. Logout\n");
         printf("Pilih: ");
-        scanf("%d", &pilih);
 
-        switch(pilih) {
-            case 1: tampilkan_alat(); break;
-            case 2: tambah_alat(); break;
-            case 3: edit_alat(); break;
-            case 4: hapus_alat(); break;
-            case 0: printf("Logout...\n"); break;
-            default: printf("Pilihan tidak valid!\n");
+        status_baca = scanf("%d", &pilih);
+
+        if (status_baca == 1) 
+        {
+            switch(pilih) {
+                case 1: tampilkan_alat(); break;
+                case 2: tambah_alat(); break;
+                case 3: edit_alat(); break;
+                case 4: hapus_alat(); break;
+                case 0: printf("Logout...\n"); break;
+                default: printf("Pilihan tidak valid!\n");
+            }
+        } else {
+            printf("Harap masukkan angka!\n");
+            while (getchar() != '\n');
         }
-    } while (pilih != 0);
+    } while (pilih != 0); 
 }
