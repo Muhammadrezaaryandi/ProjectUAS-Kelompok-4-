@@ -64,7 +64,8 @@ void tambah_alat()
 
     printf("Alat yang baru berhasil ditambahkan!\n");
 }
-// Bagian ini berfungsi untuk mengedit data alat yang sudah ada di dalam file "alat.txt"
+// Bagian ini berfungsi untuk mengedit data alat yang diliat dari ID
+// dan membuat file sementara (temp.txt) untuk menyimpan hasil edit, dan mengganti file lama dengan file baru
 void edit_alat() 
 {
     FILE *fp = fopen("alat.txt", "r");
@@ -116,6 +117,7 @@ void edit_alat()
     else printf("ID alat tidak ditemukan!\n");
 }
 // Bagian ini berfungsi untuk menghapus data alat dari file "alat.txt" berdasarkan ID alat
+// Yang tidak kehapus disalin ke temp.txt, file lama dihapus, dan temp.txt diganti jadi "alat.txt"
 void hapus_alat() {
     FILE *fp = fopen("alat.txt", "r");
     FILE *temp = fopen("temp.txt", "w");
@@ -151,7 +153,7 @@ void hapus_alat() {
     else printf("ID tidak ditemukan!\n");
 }
 
-// Bagian ini menampilkan daftar menu untuk admin
+// Bagian ini menampilkan daftar menu utama untuk admin
 void menu_admin() 
 {
     int pilih = -1;

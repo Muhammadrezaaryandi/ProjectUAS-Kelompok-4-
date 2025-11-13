@@ -48,10 +48,12 @@ void tambah_alat() {
     }
 
     Alat alat;
-    printf("Masukkan ID alat: "); scanf("%u", &alat.id);
-    printf("Nama alat: "); scanf("%s", alat.nama);
-    printf("Merek: "); scanf("%s", alat.merek);
-    printf("Model: "); scanf("%s", alat.model);
+    printf("Masukkan ID alat: "); 
+    scanf("%u", &alat.id); 
+    getchar();
+    printf("Nama alat: "); scanf(" %[^\n]", alat.nama);
+    printf("Merek: "); scanf(" %[^\n]", alat.merek);
+    printf("Model: "); scanf(" %[^\n]", alat.model);
     printf("Tahun: "); scanf("%u", &alat.tahun);
     printf("Jumlah: "); scanf("%u", &alat.jumlah);
 
@@ -87,9 +89,10 @@ void edit_alat() {
         &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) {
         if (alat.id == target) {
             printf("Masukkan data baru untuk alat %u:\n", target);
-            printf("Nama: "); scanf("%s", alat.nama);
-            printf("Merek: "); scanf("%s", alat.merek);
-            printf("Model: "); scanf("%s", alat.model);
+            getchar();
+            printf("Nama: "); scanf(" %[^\n]", alat.nama);
+            printf("Merek: "); scanf(" %[^\n]", alat.merek);
+            printf("Model: "); scanf(" %[^\n]", alat.model);
             printf("Tahun: "); scanf("%u", &alat.tahun);
             printf("Jumlah: "); scanf("%u", &alat.jumlah);
             found = 1;
