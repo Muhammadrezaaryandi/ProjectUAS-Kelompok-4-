@@ -1,4 +1,4 @@
-#include "alat.h"
+#include "data.h"
 
 // Bagian ini digunakan untuk membaca sebuah file teks
 // dan mengembalikan jumlah baris yang ada di dalam file tersebut.

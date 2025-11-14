@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h> 
-#include "alat.h"
+#include "data.h"
 
 void garis() {
     printf("========================================================================\n");

@@ -1,4 +1,4 @@
-#include "alat.h"
+#include "data.h"
 
 // Fungsi untuk menampilkan seluruh alat yang tersedia
 void lihat_alat() {
