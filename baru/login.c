@@ -1,6 +1,7 @@
 #include "data.h"
 
-int login(const char *username, const char *password, char *role) {
+int login(const char *username, const char *password, char *role)
+{
     FILE *fp = fopen("data_akun.txt", "r");
     if (!fp) {
         printf("File akun.txt tidak ditemukan!\n");
@@ -17,5 +18,6 @@ int login(const char *username, const char *password, char *role) {
     }
 
     fclose(fp);
+
     return 0; // gagal login
 }

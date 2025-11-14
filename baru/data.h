@@ -30,9 +30,7 @@ typedef struct {
     unsigned int jumlahPinjam;
 } Peminjaman;
 
-// =============================
 // DEKLARASI FUNGSI
-// =============================
 void garis(void);
 // login.c
 int login(const char *username, const char *password, char *role);
@@ -50,5 +48,4 @@ void lihat_alat();
 void pinjam_alat(const char *username);
 void lihat_pinjaman(const char *username);
 void kembalikan_alat(const char *username);
-
 #endif
