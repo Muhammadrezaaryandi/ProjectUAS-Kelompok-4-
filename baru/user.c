@@ -32,7 +32,7 @@ void pinjam_alat(const char *username) {
     scanf("%u", &jumlah);
 
     // Membaca isi file alat baris per baris
-    while (fscanf(fp, "%u %s %s %s %u %u",
+    while (fscanf(fp, "%u,%[^,],%[^,],%[^,],%u,%u\n",
         &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) {
         
         // Mengecek apakah ID cocok dan stok mencukupi, maka lakukan peminjaman dan mengurangi stok di file alat.txt
@@ -47,7 +47,7 @@ void pinjam_alat(const char *username) {
             found = 1;
         }
         // Menulis data alat yang sudah diperbarui ataupun tidak ke file sementara
-        fprintf(temp, "%u %s %s %s %u %u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah);
+        fprintf(temp, "%u,%s,%s,%s,%u,%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah);
     }
 
     if (!found) {
@@ -128,12 +128,12 @@ void kembalikan_alat(const char *username) {
     rename("temp.txt", "peminjaman.txt");
 
     // Menambah stok kembali ke file alat.txt
-    while (fscanf(alatFile, "%u %s %s %s %u %u", 
+    while (fscanf(alatFile, "%u,%[^,],%[^,],%[^,],%u,%u\n", 
         &alat.id, alat.nama, alat.merek, alat.model, &alat.tahun, &alat.jumlah) == 6) {
         if (alat.id == id) {
             alat.jumlah += jumlahKembali;
         }
-        fprintf(alatTemp, "%u %s %s %s %u %u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah);
+        fprintf(alatTemp, "%u,%s,%s,%s,%u,%u\n", alat.id, alat.nama, alat.merek, alat.model, alat.tahun, alat.jumlah);
     }
 
     // Menutup file dan mengganti file lama dengan file baru
